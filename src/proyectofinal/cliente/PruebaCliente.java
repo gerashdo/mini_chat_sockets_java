@@ -8,6 +8,7 @@ package proyectofinal.cliente;
 /**
  *
  * @author Gerardo Jimenez Arguelles
+ * @author José Jimenez Arguelles
  */
 public class PruebaCliente {
 

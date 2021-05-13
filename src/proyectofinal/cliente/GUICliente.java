@@ -11,6 +11,7 @@ import javax.swing.JFileChooser;
 /**
  *
  * @author Gerardo Jimenez Arguelles
+ * @author José Jimenez Arguelles
  */
 public class GUICliente extends javax.swing.JFrame {
 

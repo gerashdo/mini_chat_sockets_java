@@ -8,6 +8,7 @@ package proyectofinal.servidor;
 /**
  *
  * @author Gerardo Jimenez Arguelles
+ * @author José Jimenez Arguelles
  */
 public class NewJFrame extends javax.swing.JFrame {
 
