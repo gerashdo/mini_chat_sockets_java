@@ -5,18 +5,24 @@
  */
 package proyectofinal.servidor;
 
+import proyectofinal.servidor.udp.ServidorUDP;
+import proyectofinal.servidor.udp.ServidorUDPMensaje;
+
 /**
  *
  * @author Gerardo Jimenez Arguelles
  * @author José Jimenez Arguelles
  */
 public class GUIServidor extends javax.swing.JFrame {
+    protected ServidorUDPMensaje servidorMensajes;
 
     /**
      * Creates new form NewJFrame
      */
-    public GUIServidor() {
+    public GUIServidor(ServidorUDPMensaje servidorUDP) throws Exception{
         initComponents();
+        servidorMensajes = servidorUDP;
+        servidorMensajes.inicia(mensajesTextArea);
     }
 
     /**
@@ -84,12 +90,7 @@ public class GUIServidor extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new GUIServidor().setVisible(true);
-            }
-        });
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
