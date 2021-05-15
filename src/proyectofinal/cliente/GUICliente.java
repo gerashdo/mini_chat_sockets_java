@@ -6,6 +6,7 @@
 package proyectofinal.cliente;
 
 import proyectofinal.cliente.udp.ClienteUDP;
+import proyectofinal.cliente.udp.ClienteUDPMensaje;
 
 import java.io.File;
 import javax.swing.JFileChooser;
@@ -16,16 +17,17 @@ import javax.swing.JFileChooser;
  * @author José Jimenez Arguelles
  */
 public class GUICliente extends javax.swing.JFrame {
-    protected ClienteUDP clienteUDPMensajes; //Variable del socket del clienteUDP para mensajes.
+    protected ClienteUDPMensaje clienteUDPMensajes; //Variable del socket del clienteUDP para mensajes.
 
     /**
      * Creates new form Principal
      */
-    public GUICliente(ClienteUDP udpMensajes) throws Exception{
+    public GUICliente(ClienteUDPMensaje udpMensajes) throws Exception{
+        initComponents();
         clienteUDPMensajes = udpMensajes;
         //Inicializamos el socket de mensajes
-        clienteUDPMensajes.inicia();
-        initComponents();
+        clienteUDPMensajes.inicia(mensajesTextArea);
+
     }
 
     /**
@@ -134,10 +136,9 @@ public class GUICliente extends javax.swing.JFrame {
     private void enviarButtonActionPerformed(java.awt.event.ActionEvent evt){//GEN-FIRST:event_enviarButtonActionPerformed
         // Codigo para recuperar el mensaje y enviarlo.
         String mensaje = mensajeTextField.getText();
-        mensaje = "Yo: " + mensaje + "\n";
         // Enviamos el texto del mensaje al socket.
         clienteUDPMensajes.leerMensaje(mensaje);
-        mensajesTextArea.append(mensaje);
+        mensajesTextArea.append("Yo: " + mensaje + "\n");
         mensajeTextField.setText("");
     }//GEN-LAST:event_enviarButtonActionPerformed
 

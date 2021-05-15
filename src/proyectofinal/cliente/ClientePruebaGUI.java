@@ -1,11 +1,11 @@
 package proyectofinal.cliente;
 
-import proyectofinal.cliente.udp.ClienteUDP;
+import proyectofinal.cliente.udp.ClienteUDPMensaje;
 
-public class ClientePrueba {
+public class ClientePruebaGUI {
     public static void main(String[] args) throws Exception{
         //Crear Socket de clienteUDP para mensajes
-        ClienteUDP clienteUDPMensajes =new ClienteUDP("192.168.0.7",50000);
+        ClienteUDPMensaje clienteUDPMensajes =new ClienteUDPMensaje("192.168.0.7",50000);
 
 
 

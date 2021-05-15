@@ -12,6 +12,7 @@ public class ServidorUDPMensaje extends ServidorUDP{
     public void inicia(JTextArea areaMensajes) throws Exception {
         areaGUI = areaMensajes;
         ServidorEscuchaUDPMensaje servidorUDP=new ServidorEscuchaUDPMensaje(PUERTO_SERVER, areaGUI);
+        servidorUDP.start();
 
 
     }

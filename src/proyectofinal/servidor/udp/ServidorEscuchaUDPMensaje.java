@@ -36,23 +36,19 @@ public class ServidorEscuchaUDPMensaje extends ServidorEscuchaUDP{
 
                 // Agregamos el mensaje en la GUI del servidor.
                 areaGUI.append("Mensaje recibido \""+mensaje+"\" del cliente "+
-                        paquete.getAddress()+"#"+paquete.getPort());
+                        paquete.getAddress()+"#"+paquete.getPort()+"\n");
 
                 //Obtenemos IP Y PUERTO
                 puertoCliente = paquete.getPort();
                 addressCliente = paquete.getAddress();
 
-                if (mensaje.startsWith("fin")) {
-                    mensajeComp="Transmisión con el servidor finalizada...";
-                    enviaMensaje(mensajeComp);
-                }
-                else if (mensaje.startsWith("hola")) {
+                if (mensaje.startsWith("hola")) {
                     mensajeComp="¿Cómo estas?";
 
                     //formateamos el mensaje de salida
                     enviaMensaje(mensajeComp);
                 }
-                else if (mensaje.startsWith("bien y tú")) {
+                else if (mensaje.startsWith("bien")) {
                     mensajeComp="También estoy bien, gracias";
 
                     //formateamos el mensaje de salida
@@ -62,7 +58,7 @@ public class ServidorEscuchaUDPMensaje extends ServidorEscuchaUDP{
                     mensajeComp="...";
                 }
 
-            } while (!mensaje.startsWith("fin"));
+            } while (true);
         }
         catch (Exception e) {
             System.err.println(e.getMessage());

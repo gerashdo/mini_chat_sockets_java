@@ -1,4 +1,4 @@
-package proyectofinal.cliente.tcp;
+package proyectofinal.cliente.udp;
 
 import proyectofinal.cliente.udp.ClienteEnviaUDP;
 
