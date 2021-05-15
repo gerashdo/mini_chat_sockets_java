@@ -21,7 +21,7 @@ public class GUICliente extends javax.swing.JFrame {
     /**
      * Creates new form Principal
      */
-    public GUICliente(ClienteUDP udpMensajes) throws Exception {
+    public GUICliente(ClienteUDP udpMensajes) throws Exception{
         clienteUDPMensajes = udpMensajes;
         //Inicializamos el socket de mensajes
         clienteUDPMensajes.inicia();
@@ -131,10 +131,13 @@ public class GUICliente extends javax.swing.JFrame {
         rutaTextField.setText(nombreArchivo);
     }//GEN-LAST:event_seleccionarArchivoButtonActionPerformed
 
-    private void enviarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarButtonActionPerformed
+    private void enviarButtonActionPerformed(java.awt.event.ActionEvent evt){//GEN-FIRST:event_enviarButtonActionPerformed
         // Codigo para recuperar el mensaje y enviarlo.
         String mensaje = mensajeTextField.getText();
-        mensajesTextArea.append("Yo: " + mensaje + "\n");
+        mensaje = "Yo: " + mensaje + "\n";
+        // Enviamos el texto del mensaje al socket.
+        clienteUDPMensajes.leerMensaje(mensaje);
+        mensajesTextArea.append(mensaje);
         mensajeTextField.setText("");
     }//GEN-LAST:event_enviarButtonActionPerformed
 
