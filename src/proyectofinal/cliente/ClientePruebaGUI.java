@@ -7,8 +7,6 @@ public class ClientePruebaGUI {
         //Crear Socket de clienteUDP para mensajes
         ClienteUDPMensaje clienteUDPMensajes =new ClienteUDPMensaje("192.168.0.7",50000);
 
-
-
         //Muestra la gui del cliente
         GUICliente gui = new GUICliente(clienteUDPMensajes);
         gui.setVisible(true);
