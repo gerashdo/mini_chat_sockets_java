@@ -9,13 +9,18 @@ import java.net.Socket;
  */
 public class ClientTCP {
     public static void main(String[] args) throws IOException {
-        File archivo = new File("aEnviar.mp4");
+        File archivo = new File("p2.vob");
         //Create input stream
         BufferedInputStream bis = new BufferedInputStream(new FileInputStream(archivo.getName()));
         //Create Socket
-        Socket client = new Socket("192.168.0.7", 8888);
+        Socket client = new Socket("192.168.0.7", 50001);
         //Output stream
         BufferedOutputStream bos = new BufferedOutputStream(client.getOutputStream());
+
+        DataOutputStream dos=new DataOutputStream(client.getOutputStream());
+        dos.writeUTF(archivo.getName());
+
+
         //Write data
         byte[] b = new byte[1024];
         int len;

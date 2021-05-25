@@ -5,6 +5,7 @@
  */
 package proyectofinal.cliente;
 
+import proyectofinal.cliente.tcp.ClienteTCP;
 import proyectofinal.cliente.udp.ClienteUDP;
 import proyectofinal.cliente.udp.ClienteUDPMensaje;
 
@@ -18,12 +19,14 @@ import javax.swing.JFileChooser;
  */
 public class GUICliente extends javax.swing.JFrame {
     protected ClienteUDPMensaje clienteUDPMensajes; //Variable del socket del clienteUDP para mensajes.
+    protected ClienteTCP clienteTCP;
 
     /**
      * Creates new form Principal
      */
-    public GUICliente(ClienteUDPMensaje udpMensajes) throws Exception{
+    public GUICliente(ClienteUDPMensaje udpMensajes, ClienteTCP tcp) throws Exception{
         initComponents();
+        clienteTCP = tcp;
         clienteUDPMensajes = udpMensajes;
         //Inicializamos el socket de mensajes
         clienteUDPMensajes.inicia(mensajesTextArea);
@@ -72,6 +75,11 @@ public class GUICliente extends javax.swing.JFrame {
         rutaTextField.setEnabled(false);
 
         enviarArchivoButton.setText("Enviar Archivo");
+        enviarArchivoButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enviarArchivoButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
@@ -130,6 +138,7 @@ public class GUICliente extends javax.swing.JFrame {
         fileChooser.showOpenDialog(null);
         File archivo = fileChooser.getSelectedFile();
         String nombreArchivo = archivo.getAbsolutePath();
+        archivo = new File(nombreArchivo);
         rutaTextField.setText(nombreArchivo);
     }//GEN-LAST:event_seleccionarArchivoButtonActionPerformed
 
@@ -141,6 +150,25 @@ public class GUICliente extends javax.swing.JFrame {
         mensajesTextArea.append("Yo: " + mensaje + "\n");
         mensajeTextField.setText("");
     }//GEN-LAST:event_enviarButtonActionPerformed
+
+    private void enviarArchivoButtonActionPerformed(java.awt.event.ActionEvent evt){//GEN-FIRST:event_enviarArchivoButtonActionPerformed
+        File archivo = new File(rutaTextField.getText());
+        try{
+
+            System.out.println("Hello2");
+            clienteTCP.leerArchivo(archivo);
+
+            clienteTCP.inicia();
+
+            System.out.println("Hello3");
+            clienteTCP.enviar();
+            System.out.println("Hello4");
+        }catch (Exception e) {
+            System.err.println(e.getMessage());
+            System.exit(1);
+        }
+
+    }//GEN-LAST:event_enviarArchivoButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton enviarArchivoButton;
