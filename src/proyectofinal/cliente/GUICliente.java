@@ -155,12 +155,8 @@ public class GUICliente extends javax.swing.JFrame {
         File archivo = new File(rutaTextField.getText());
         try{
             ClienteTCP clienteTCP = new ClienteTCP(SERVER,50001);
-            System.out.println("Hello2");
             clienteTCP.leerArchivo(archivo);
             clienteTCP.inicia();
-            System.out.println("Hello3");
-//            clienteTCP.enviar();
-            System.out.println("Hello4");
         }catch (Exception e) {
             System.err.println(e.getMessage());
             System.exit(1);
