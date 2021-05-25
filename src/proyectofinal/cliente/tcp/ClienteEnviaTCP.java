@@ -28,9 +28,6 @@ public class ClienteEnviaTCP extends Thread{
         // puerto que vamos a utilizar para la comunicación
         socket = new Socket(SERVER,PUERTO_SERVER);
 
-
-
-
         //*
         // Declaramos un bufer output para enviar los bytes de los archivos.
         bos = new BufferedOutputStream(socket.getOutputStream());
@@ -75,7 +72,6 @@ public class ClienteEnviaTCP extends Thread{
                 bos.write(b, 0, read);
             }
 
-
             bos.close();
             socket.close();
             bis.close();
@@ -94,6 +90,7 @@ public class ClienteEnviaTCP extends Thread{
 
     public void setFile(File file) throws Exception{
         archivo = file;
+        System.out.println("Se seteo el archivo");
         // Declaramos un Bufer de input para los archivos.
         // System.out.println(archivo.getAbsolutePath());
         bis = new BufferedInputStream(new FileInputStream(archivo));

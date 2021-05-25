@@ -19,14 +19,14 @@ import javax.swing.JFileChooser;
  */
 public class GUICliente extends javax.swing.JFrame {
     protected ClienteUDPMensaje clienteUDPMensajes; //Variable del socket del clienteUDP para mensajes.
-    protected ClienteTCP clienteTCP;
+    protected final String SERVER;;
 
     /**
      * Creates new form Principal
      */
-    public GUICliente(ClienteUDPMensaje udpMensajes, ClienteTCP tcp) throws Exception{
+    public GUICliente(ClienteUDPMensaje udpMensajes, String ip) throws Exception{
         initComponents();
-        clienteTCP = tcp;
+        SERVER = ip;
         clienteUDPMensajes = udpMensajes;
         //Inicializamos el socket de mensajes
         clienteUDPMensajes.inicia(mensajesTextArea);
@@ -138,7 +138,7 @@ public class GUICliente extends javax.swing.JFrame {
         fileChooser.showOpenDialog(null);
         File archivo = fileChooser.getSelectedFile();
         String nombreArchivo = archivo.getAbsolutePath();
-        archivo = new File(nombreArchivo);
+//        archivo = new File(nombreArchivo);
         rutaTextField.setText(nombreArchivo);
     }//GEN-LAST:event_seleccionarArchivoButtonActionPerformed
 
@@ -154,14 +154,12 @@ public class GUICliente extends javax.swing.JFrame {
     private void enviarArchivoButtonActionPerformed(java.awt.event.ActionEvent evt){//GEN-FIRST:event_enviarArchivoButtonActionPerformed
         File archivo = new File(rutaTextField.getText());
         try{
-
+            ClienteTCP clienteTCP = new ClienteTCP(SERVER,50001);
             System.out.println("Hello2");
             clienteTCP.leerArchivo(archivo);
-
             clienteTCP.inicia();
-
             System.out.println("Hello3");
-            clienteTCP.enviar();
+//            clienteTCP.enviar();
             System.out.println("Hello4");
         }catch (Exception e) {
             System.err.println(e.getMessage());
