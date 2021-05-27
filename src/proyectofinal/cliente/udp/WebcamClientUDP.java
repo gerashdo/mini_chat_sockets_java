@@ -15,8 +15,8 @@ import java.net.Socket;
 import java.util.zip.DeflaterOutputStream;
 
 public class WebcamClientUDP {
-    protected String IP = "localhost";
-    protected int PORT = 10002;
+    protected String IP;
+    protected int PORT;
 
     protected Socket socket;
     protected ObjectInputStream ois;
