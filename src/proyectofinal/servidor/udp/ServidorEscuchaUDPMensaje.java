@@ -5,10 +5,12 @@ import java.net.DatagramPacket;
 
 public class ServidorEscuchaUDPMensaje extends ServidorEscuchaUDP{
     protected JTextArea areaGUI;
+    private JLabel label;
 
-    public ServidorEscuchaUDPMensaje(int puertoS, JTextArea areaGUI) throws Exception {
+    public ServidorEscuchaUDPMensaje(int puertoS, JTextArea areaGUI, JLabel label) throws Exception {
         super(puertoS);
         this.areaGUI = areaGUI;
+        this.label = label;
     }
 
     @Override
@@ -53,6 +55,8 @@ public class ServidorEscuchaUDPMensaje extends ServidorEscuchaUDP{
 
                     //formateamos el mensaje de salida
                     enviaMensaje(mensajeComp);
+                }else if (mensaje.equals("Finaliza Transmision")) {
+                    label.setIcon(null);
                 }
                 else{
                     mensajeComp="...";

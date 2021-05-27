@@ -25,7 +25,7 @@ public class GUIServidor extends javax.swing.JFrame {
     public GUIServidor(ServidorUDPMensaje servidorUDP) throws Exception{
         initComponents();
         servidorMensajes = servidorUDP;
-        servidorMensajes.inicia(mensajesTextArea);
+        servidorMensajes.inicia(mensajesTextArea, videoLabel);
         servidorTCP = new ServidorTCP(50001);
         servidorTCP.setMensajesTextArea(mensajesTextArea);
         servidorTCP.inicia();

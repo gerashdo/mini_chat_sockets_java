@@ -41,12 +41,11 @@ public class WebcamServerUDP {
                     ByteArrayInputStream bain = new ByteArrayInputStream(buff);
                     BufferedImage bufIma = ImageIO.read(bain);
                     ImageIcon icon = new ImageIcon(bufIma);
-                    System.out.println(icon.toString());
+                    System.out.println(icon.getImage());
                     label.setIcon(icon);
                 }
 
             } catch (Exception e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }

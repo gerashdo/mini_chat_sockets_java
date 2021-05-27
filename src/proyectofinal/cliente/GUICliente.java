@@ -225,6 +225,8 @@ public class GUICliente extends javax.swing.JFrame {
     private void detenerButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_detenerButton1ActionPerformed
         webCam.detener();
         audio.detener();
+        clienteUDPMensajes.leerMensaje("Finaliza Transmision");
+
     }//GEN-LAST:event_detenerButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
