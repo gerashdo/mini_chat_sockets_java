@@ -11,6 +11,8 @@ public class AudioClienteUDP {
 
     protected String IP;
     protected final int PUERTO = 50005;
+    protected boolean enProceso = true;
+    protected TargetDataLine microphone;
 
     public AudioClienteUDP(String IP){
         this.IP = IP;
@@ -21,17 +23,17 @@ public class AudioClienteUDP {
         audio.start();
     }
 
-//    public static void main(String[] args) throws IOException {
-//        AudioClienteUDP audio = new AudioClienteUDP("192.168.0.7");
-//        audio.iniciar();
-//    }
+    public void detener(){
+        enProceso = false;
+        microphone.stop();
+        microphone.close();
+    }
 
     class AudioClienteEnviaUDP extends Thread{
 
         @Override
         public void run() {
             AudioFormat format = new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, 44100, 16, 2, 4, 44100, true);
-            TargetDataLine microphone;
             SourceDataLine speakers;
             try {
                 microphone = AudioSystem.getTargetDataLine(format);
@@ -58,7 +60,7 @@ public class AudioClienteUDP {
                 InetAddress address = InetAddress.getByName(IP);
                 DatagramSocket socket = new DatagramSocket();
                 byte[] buffer = new byte[1024];
-                while(true) {
+                while(enProceso) {
                     numBytesRead = microphone.read(data, 0, CHUNK_SIZE);
                     //  bytesRead += numBytesRead;
                     // write the mic data to a stream for use later

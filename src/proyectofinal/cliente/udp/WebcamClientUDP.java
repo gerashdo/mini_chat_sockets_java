@@ -12,11 +12,11 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.Socket;
-import java.util.zip.DeflaterOutputStream;
 
 public class WebcamClientUDP {
     protected String IP;
     protected int PORT;
+    protected boolean enProceso = true;
 
     protected Socket socket;
     protected ObjectInputStream ois;
@@ -38,6 +38,11 @@ public class WebcamClientUDP {
         clienteEnvia.start();
     }
 
+    public void detener(){
+        enProceso = false;
+        camara.close();
+    }
+
     class WebcamClienteEnviaUDP extends Thread{
 
         protected DatagramSocket socket;
@@ -53,61 +58,26 @@ public class WebcamClientUDP {
             camara.setViewSize(new Dimension(640, 480));
             camara.open();
 
-//            frame = new JFrame("Cliente camara");
-//            frame.setSize(640, 480);
-//            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//
-//            label = new JLabel();
-//            label.setSize(640, 480);
-//            label.setVisible(true);
-//
-//            frame.add(label);
-//            frame.setVisible(true);
-
-
-
-
             try {
-                while (true) {
+                while (enProceso) {
                     BufferedImage bufferImg = camara.getImage();
                     ImageIcon img= new ImageIcon(bufferImg);
                     label.setIcon(img);
 
                     ByteArrayOutputStream baos = new ByteArrayOutputStream();
                     ImageIO.write(camara.getImage(), "jpg", baos);
-//                    baos.flush();
-//                    byte[] imagenByte1 = baos.toByteArray();
                     imagenByte = baos.toByteArray();
-                    System.out.println(imagenByte.length);
+//                    System.out.println(imagenByte.length);
                     DatagramPacket packet = new DatagramPacket(imagenByte, imagenByte.length, address, PORT);
                     socket.send(packet);
-
                 }
+                label.setIcon(null);
             } catch (Exception e){
                 System.out.println("Someone Disconnected");
 
             }
         }
-
-        public byte[] compress(byte[] in) {
-            try {
-                ByteArrayOutputStream out = new ByteArrayOutputStream();
-                DeflaterOutputStream defl = new DeflaterOutputStream(out);
-                defl.write(in);
-                defl.flush();
-                defl.close();
-                return out.toByteArray();
-            } catch (Exception e) {
-                e.printStackTrace();
-                System.exit(150);
-                return null;
-            }
-        }
     }
-
-//    public static void main(String[] args) throws Exception{
-//        new WebcamClientUDP("192.168.0.7", 50003).inicia();
-//    }
 }
 
 

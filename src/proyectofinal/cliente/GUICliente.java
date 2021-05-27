@@ -22,6 +22,8 @@ import javax.swing.JFileChooser;
 public class GUICliente extends javax.swing.JFrame {
     protected ClienteUDPMensaje clienteUDPMensajes; //Variable del socket del clienteUDP para mensajes.
     protected final String SERVER;;
+    protected WebcamClientUDP webCam;
+    protected AudioClienteUDP audio;
 
     /**
      * Creates new form Principal
@@ -211,15 +213,18 @@ public class GUICliente extends javax.swing.JFrame {
 
     private void iniciarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarButtonActionPerformed
         try{
-            new WebcamClientUDP(SERVER, 50003, videoLabel).inicia();
-            new AudioClienteUDP(SERVER).iniciar();
+            webCam = new WebcamClientUDP(SERVER, 50003, videoLabel);
+            webCam.inicia();
+            audio = new AudioClienteUDP(SERVER);
+            audio.iniciar();
         } catch (Exception e){
             e.printStackTrace();
         }
     }//GEN-LAST:event_iniciarButtonActionPerformed
 
     private void detenerButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_detenerButton1ActionPerformed
-        // TODO add your handling code here:
+        webCam.detener();
+        audio.detener();
     }//GEN-LAST:event_detenerButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
