@@ -6,8 +6,10 @@
 package proyectofinal.servidor;
 
 import proyectofinal.servidor.tcp.ServidorTCP;
+import proyectofinal.servidor.udp.AudioServerUDP;
 import proyectofinal.servidor.udp.ServidorUDP;
 import proyectofinal.servidor.udp.ServidorUDPMensaje;
+import proyectofinal.servidor.udp.WebcamServerUDP;
 
 /**
  *
@@ -28,6 +30,8 @@ public class GUIServidor extends javax.swing.JFrame {
         servidorTCP = new ServidorTCP(50001);
         servidorTCP.setMensajesTextArea(mensajesTextArea);
         servidorTCP.inicia();
+        new WebcamServerUDP(videoLabel);
+        new AudioServerUDP().iniciar();
     }
 
     /**
@@ -56,19 +60,18 @@ public class GUIServidor extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(mensajesScrollP, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(mensajesScrollP, javax.swing.GroupLayout.PREFERRED_SIZE, 551, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(videoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(videoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(15, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(videoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(mensajesScrollP, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(mensajesScrollP, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(videoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 76, Short.MAX_VALUE))
         );
 
