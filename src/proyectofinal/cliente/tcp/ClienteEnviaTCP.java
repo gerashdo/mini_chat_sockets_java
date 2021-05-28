@@ -1,4 +1,6 @@
 package proyectofinal.cliente.tcp;
+import proyectofinal.test.Velocidad;
+
 import java.net.*;
 // importar la libreria java.net
 import java.io.*;
@@ -52,9 +54,22 @@ public class ClienteEnviaTCP extends Thread{
             int read = 0;
             int totalRead = 0;
             int remaining = filesize;
+
+            ////////////////////
+            Velocidad velocidad = new Velocidad(filesize*8);
+            velocidad.iniciar();
+
+
             while((read = bis.read(b, 0, Math.min(b.length, remaining))) > 0) {
                 totalRead += read;
                 remaining -= read;
+                ///////
+                System.out.println("Tasa de transferencia: "+(velocidad.getTasaTransferencia(totalRead*8)/1000000));
+                System.out.println("Tiempo Total: "+velocidad.getTiempoTotal());
+                System.out.println("Tiempo Transcurrido: "+velocidad.getTiempoTranscurrido());
+                System.out.println("Tiempo Restante: "+velocidad.getTiempoRestante(remaining*8));
+
+                ///////
                 System.out.println("read " + totalRead + " bytes.");
                 System.out.println("remaining " + remaining + " bytes.");
                 bos.write(b, 0, read);
