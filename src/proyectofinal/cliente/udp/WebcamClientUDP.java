@@ -57,17 +57,14 @@ public class WebcamClientUDP {
             camara = Webcam.getDefault();
             camara.setViewSize(new Dimension(640, 480));
             camara.open();
-
             try {
                 while (enProceso) {
                     BufferedImage bufferImg = camara.getImage();
                     ImageIcon img= new ImageIcon(bufferImg);
                     label.setIcon(img);
-
                     ByteArrayOutputStream baos = new ByteArrayOutputStream();
                     ImageIO.write(camara.getImage(), "jpg", baos);
                     imagenByte = baos.toByteArray();
-//                    System.out.println(imagenByte.length);
                     DatagramPacket packet = new DatagramPacket(imagenByte, imagenByte.length, address, PORT);
                     socket.send(packet);
                 }

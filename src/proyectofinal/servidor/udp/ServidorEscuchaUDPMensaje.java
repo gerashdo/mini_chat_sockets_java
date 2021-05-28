@@ -16,7 +16,6 @@ public class ServidorEscuchaUDPMensaje extends ServidorEscuchaUDP{
     @Override
     public void run() {
         try {
-
             String mensaje ="";
             String mensajeComp ="";
 

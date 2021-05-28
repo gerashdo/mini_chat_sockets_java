@@ -7,7 +7,6 @@ package proyectofinal.cliente;
 
 import proyectofinal.cliente.tcp.ClienteTCP;
 import proyectofinal.cliente.udp.AudioClienteUDP;
-import proyectofinal.cliente.udp.ClienteUDP;
 import proyectofinal.cliente.udp.ClienteUDPMensaje;
 import proyectofinal.cliente.udp.WebcamClientUDP;
 

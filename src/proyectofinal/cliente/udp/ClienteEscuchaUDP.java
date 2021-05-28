@@ -16,7 +16,6 @@ public class ClienteEscuchaUDP extends Thread{
     
     public  ClienteEscuchaUDP(DatagramSocket socketNuevo){
         socket=socketNuevo;
-        //SERVER=servidor;
         PUERTO_CLIENTE=socket.getLocalPort();
     }
     public void run() {

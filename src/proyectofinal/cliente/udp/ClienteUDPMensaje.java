@@ -28,6 +28,4 @@ public class ClienteUDPMensaje extends ClienteUDP{
         clienteEnvUDP.setMensaje(mensaje);
         clienteEnvUDP.run();
     }
-
-
 }

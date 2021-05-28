@@ -1,7 +1,6 @@
 package proyectofinal.servidor.udp;
 
 import java.net.*;
-import java.io.*;
 
 public class ServidorEscuchaUDP extends Thread{
     protected DatagramSocket socket;

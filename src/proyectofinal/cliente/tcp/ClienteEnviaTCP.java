@@ -81,6 +81,7 @@ public class ClienteEnviaTCP extends Thread{
             // si existen errores los mostrará en la consola y después saldrá del
             // programa
             System.err.println(e.getMessage());
+            System.out.println("Es aqui");
             System.exit(1);
         }
 

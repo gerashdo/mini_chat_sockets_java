@@ -17,7 +17,6 @@ public class WebcamServerUDP {
         servidor.start();
     }
 
-
     class WebcamServidorEscuchaUDP extends Thread{
         protected DatagramSocket socket;
 
@@ -30,21 +29,17 @@ public class WebcamServerUDP {
         public void run() {
             try {
                 while(true){
-                    System.out.println("Entra al while");
                     byte[] buffer = new byte[64000];
                     DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
 
                     socket.receive(packet);
                     System.out.println("recibido");
                     byte[] buff = packet.getData();
-//                    byte[] descomp = decompress(buff);
                     ByteArrayInputStream bain = new ByteArrayInputStream(buff);
                     BufferedImage bufIma = ImageIO.read(bain);
                     ImageIcon icon = new ImageIcon(bufIma);
-                    System.out.println(icon.getImage());
                     label.setIcon(icon);
                 }
-
             } catch (Exception e) {
                 e.printStackTrace();
             }
