@@ -265,23 +265,26 @@ public class GUICliente extends javax.swing.JFrame {
         // Codigo para recuperar el mensaje y enviarlo.
         String mensaje = mensajeTextField.getText();
         // Enviamos el texto del mensaje al socket.
-        clienteUDPMensajes.leerMensaje(mensaje);
-        mensajesTextArea.append("Yo: " + mensaje + "\n");
-        mensajeTextField.setText("");
+        if(!mensaje.equals("")){
+            clienteUDPMensajes.leerMensaje(mensaje);
+            mensajesTextArea.append("Yo: " + mensaje + "\n");
+            mensajeTextField.setText("");
+        }
     }//GEN-LAST:event_enviarButtonActionPerformed
 
     private void enviarArchivoButtonActionPerformed(java.awt.event.ActionEvent evt){//GEN-FIRST:event_enviarArchivoButtonActionPerformed
-        File archivo = new File(rutaTextField.getText());
-        try{
-            clienteTCP = new ClienteTCP(SERVER,50001);
-            clienteTCP.setLabels(tasaLabel,totalLabel,restanteLabel,transcurridoLabel);
-            clienteTCP.leerArchivo(archivo);
-            clienteTCP.inicia();
-        }catch (Exception e) {
-            System.err.println(e.getMessage());
-            System.exit(1);
+        if(!rutaTextField.getText().equals("")){
+            File archivo = new File(rutaTextField.getText());
+            try{
+                clienteTCP = new ClienteTCP(SERVER,50001);
+                clienteTCP.setLabels(tasaLabel,totalLabel,restanteLabel,transcurridoLabel);
+                clienteTCP.leerArchivo(archivo);
+                clienteTCP.inicia();
+            }catch (Exception e) {
+                System.err.println(e.getMessage());
+                System.exit(1);
+            }
         }
-
     }//GEN-LAST:event_enviarArchivoButtonActionPerformed
 
     private void iniciarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarButtonActionPerformed
