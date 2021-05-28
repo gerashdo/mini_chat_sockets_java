@@ -24,4 +24,8 @@ public  class ClienteTCP{
     public void setLabels(JLabel tasa, JLabel total, JLabel restante, JLabel transcurrido){
         clienteTCP.setLabels(tasa,total,restante,transcurrido);
     }
+
+    public void cancelar(){
+        clienteTCP.cancelar();
+    }
 }

@@ -23,6 +23,7 @@ public class GUICliente extends javax.swing.JFrame {
     protected final String SERVER;;
     protected WebcamClientUDP webCam;
     protected AudioClienteUDP audio;
+    ClienteTCP clienteTCP;
 
     /**
      * Creates new form Principal
@@ -65,6 +66,7 @@ public class GUICliente extends javax.swing.JFrame {
         totalLabel = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         tasaLabel = new javax.swing.JLabel();
+        cancelButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -133,6 +135,13 @@ public class GUICliente extends javax.swing.JFrame {
         tasaLabel.setText("-");
         tasaLabel.setFocusable(false);
 
+        cancelButton.setText("Cancelar");
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
@@ -167,6 +176,8 @@ public class GUICliente extends javax.swing.JFrame {
                         .addComponent(rutaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(enviarArchivoButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cancelButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(iniciarButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -202,7 +213,8 @@ public class GUICliente extends javax.swing.JFrame {
                             .addComponent(detenerButton1)
                             .addComponent(seleccionarArchivoButton)
                             .addComponent(rutaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(enviarArchivoButton)))
+                            .addComponent(enviarArchivoButton)
+                            .addComponent(cancelButton)))
                     .addGroup(mainPanelLayout.createSequentialGroup()
                         .addComponent(mensajesScrollP, javax.swing.GroupLayout.PREFERRED_SIZE, 432, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -261,7 +273,7 @@ public class GUICliente extends javax.swing.JFrame {
     private void enviarArchivoButtonActionPerformed(java.awt.event.ActionEvent evt){//GEN-FIRST:event_enviarArchivoButtonActionPerformed
         File archivo = new File(rutaTextField.getText());
         try{
-            ClienteTCP clienteTCP = new ClienteTCP(SERVER,50001);
+            clienteTCP = new ClienteTCP(SERVER,50001);
             clienteTCP.setLabels(tasaLabel,totalLabel,restanteLabel,transcurridoLabel);
             clienteTCP.leerArchivo(archivo);
             clienteTCP.inicia();
@@ -290,7 +302,14 @@ public class GUICliente extends javax.swing.JFrame {
 
     }//GEN-LAST:event_detenerButton1ActionPerformed
 
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+        if(clienteTCP != null){
+            clienteTCP.cancelar();
+        }
+    }//GEN-LAST:event_cancelButtonActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton cancelButton;
     private javax.swing.JButton detenerButton1;
     private javax.swing.JButton enviarArchivoButton;
     private javax.swing.JButton enviarButton;

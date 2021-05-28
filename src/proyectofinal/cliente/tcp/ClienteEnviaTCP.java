@@ -17,6 +17,7 @@ public class ClienteEnviaTCP extends Thread{
     protected BufferedOutputStream bos;
     protected File archivo;
     protected final int tamBuffer = 8192;
+    protected boolean fin;
 
     protected JLabel tasaLabel;
     protected JLabel totalLabel;
@@ -26,6 +27,7 @@ public class ClienteEnviaTCP extends Thread{
     public ClienteEnviaTCP(String servidor, int puertoS) throws Exception{
         PUERTO_SERVER=puertoS;
         SERVER=servidor;
+        fin = true;
 
         // Creamos una instancia BuffererReader en la
         // que guardamos los datos introducido por el usuario
@@ -61,7 +63,7 @@ public class ClienteEnviaTCP extends Thread{
             Velocidad velocidad = new Velocidad(filesize*8);
             velocidad.iniciar();
 
-            while((read = bis.read(b, 0, menor(b.length, remaining))) > 0) {
+            while(fin &&((read = bis.read(b, 0, menor(b.length, remaining))) > 0)) {
                 totalRead += read;
                 remaining -= read;
                 tasaLabel.setText(String.format("%.2f Mbps",(velocidad.getTasaTransferencia(totalRead*8)/1000000)));
@@ -75,6 +77,7 @@ public class ClienteEnviaTCP extends Thread{
             bos.close();
             socket.close();
             bis.close();
+            fin = true;
             System.out.println("File upload completed");
 
         }
@@ -101,6 +104,10 @@ public class ClienteEnviaTCP extends Thread{
         tasaLabel = tasa;
         restanteLabel = restante;
         trasncurridoLabel= transcurrido;
+    }
+
+    public void cancelar(){
+        fin = false;
     }
 
     public int menor(int num1, long num2){
