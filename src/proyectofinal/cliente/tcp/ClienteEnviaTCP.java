@@ -16,6 +16,7 @@ public class ClienteEnviaTCP extends Thread{
     protected BufferedInputStream bis;
     protected BufferedOutputStream bos;
     protected File archivo;
+    protected final int tamBuffer = 8192;
 
     protected JLabel tasaLabel;
     protected JLabel totalLabel;
@@ -48,10 +49,11 @@ public class ClienteEnviaTCP extends Thread{
         try {
             out.writeUTF(archivo.getName());
             //Escritura de datos
-            byte[] b = new byte[8192];
+            byte[] b = new byte[tamBuffer];
             int len;
 
-            long filesize = Integer.parseInt(""+archivo.length()); // Envia archivos
+            long filesize = Long.parseLong(""+archivo.length()); // Envia archivos
+            System.out.println(filesize);
             long read = 0;
             long totalRead = 0;
             long remaining = filesize;
@@ -59,7 +61,7 @@ public class ClienteEnviaTCP extends Thread{
             Velocidad velocidad = new Velocidad(filesize*8);
             velocidad.iniciar();
 
-            while((read = bis.read(b, 0, Math.min(b.length, (int)remaining))) > 0) {
+            while((read = bis.read(b, 0, menor(b.length, remaining))) > 0) {
                 totalRead += read;
                 remaining -= read;
                 tasaLabel.setText(String.format("%.2f Mbps",(velocidad.getTasaTransferencia(totalRead*8)/1000000)));
@@ -81,6 +83,7 @@ public class ClienteEnviaTCP extends Thread{
             // si existen errores los mostrará en la consola y después saldrá del
             // programa
             System.err.println(e.getMessage());
+            e.printStackTrace();
             System.out.println("Es aqui");
             System.exit(1);
         }
@@ -98,5 +101,13 @@ public class ClienteEnviaTCP extends Thread{
         tasaLabel = tasa;
         restanteLabel = restante;
         trasncurridoLabel= transcurrido;
+    }
+
+    public int menor(int num1, long num2){
+        if(num1<num2){
+            return num1;
+        }else{
+            return (int)num2;
+        }
     }
 }
