@@ -58,6 +58,14 @@ public class GUICliente extends javax.swing.JFrame {
         iniciarButton = new javax.swing.JButton();
         detenerButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        restanteLabel = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        transcurridoLabel = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        totalLabel = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        tasaLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -105,6 +113,27 @@ public class GUICliente extends javax.swing.JFrame {
 
         jLabel1.setText("Video llamada");
 
+        jLabel3.setText("Tiempo Restante");
+
+        restanteLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        restanteLabel.setText("-");
+
+        jLabel4.setText("Tiempo Transcurrido");
+
+        transcurridoLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        transcurridoLabel.setText("-");
+
+        jLabel2.setText("Tiempo Total");
+
+        totalLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        totalLabel.setText("-");
+
+        jLabel6.setText("Tasa Transferencia");
+
+        tasaLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        tasaLabel.setText("-");
+        tasaLabel.setFocusable(false);
+
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
@@ -112,6 +141,27 @@ public class GUICliente extends javax.swing.JFrame {
             .addGroup(mainPanelLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(mainPanelLayout.createSequentialGroup()
+                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel6)
+                            .addGroup(mainPanelLayout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(tasaLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(35, 35, 35)
+                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(totalLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(45, 45, 45)
+                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(restanteLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(46, 46, 46)
+                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(transcurridoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addGap(292, 292, 292))
                     .addGroup(mainPanelLayout.createSequentialGroup()
                         .addComponent(seleccionarArchivoButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -135,10 +185,6 @@ public class GUICliente extends javax.swing.JFrame {
                                 .addGap(24, 24, 24)))
                         .addComponent(videoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(38, Short.MAX_VALUE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(292, 292, 292))
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,13 +203,27 @@ public class GUICliente extends javax.swing.JFrame {
                             .addComponent(detenerButton1)
                             .addComponent(seleccionarArchivoButton)
                             .addComponent(rutaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(enviarArchivoButton))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel1)
-                        .addGap(122, 122, 122))
+                            .addComponent(enviarArchivoButton)))
                     .addGroup(mainPanelLayout.createSequentialGroup()
                         .addComponent(mensajesScrollP, javax.swing.GroupLayout.PREFERRED_SIZE, 432, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(mainPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(122, 122, 122))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
+                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(tasaLabel)
+                            .addComponent(totalLabel)
+                            .addComponent(restanteLabel)
+                            .addComponent(transcurridoLabel))
+                        .addGap(91, 91, 91))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -174,7 +234,9 @@ public class GUICliente extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 574, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 594, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -202,6 +264,7 @@ public class GUICliente extends javax.swing.JFrame {
         File archivo = new File(rutaTextField.getText());
         try{
             ClienteTCP clienteTCP = new ClienteTCP(SERVER,50001);
+            clienteTCP.setLabels(tasaLabel,totalLabel,restanteLabel,transcurridoLabel);
             clienteTCP.leerArchivo(archivo);
             clienteTCP.inicia();
         }catch (Exception e) {
@@ -235,12 +298,20 @@ public class GUICliente extends javax.swing.JFrame {
     private javax.swing.JButton enviarButton;
     private javax.swing.JButton iniciarButton;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JTextField mensajeTextField;
     private javax.swing.JScrollPane mensajesScrollP;
     private javax.swing.JTextArea mensajesTextArea;
+    private javax.swing.JLabel restanteLabel;
     private javax.swing.JTextField rutaTextField;
     private javax.swing.JButton seleccionarArchivoButton;
+    private javax.swing.JLabel tasaLabel;
+    private javax.swing.JLabel totalLabel;
+    private javax.swing.JLabel transcurridoLabel;
     private javax.swing.JLabel videoLabel;
     // End of variables declaration//GEN-END:variables
 }

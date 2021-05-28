@@ -1,6 +1,7 @@
 package proyectofinal.cliente.tcp;
 import proyectofinal.test.Velocidad;
 
+import javax.swing.*;
 import java.net.*;
 // importar la libreria java.net
 import java.io.*;
@@ -15,8 +16,13 @@ public class ClienteEnviaTCP extends Thread{
     protected final String SERVER;
     protected DataOutputStream out;
     protected BufferedInputStream bis;
-    BufferedOutputStream bos;
+    protected BufferedOutputStream bos;
     protected File archivo;
+
+    protected JLabel tasaLabel;
+    protected JLabel totalLabel;
+    protected JLabel restanteLabel;
+    protected JLabel trasncurridoLabel;
     
     public ClienteEnviaTCP(String servidor, int puertoS) throws Exception{
         PUERTO_SERVER=puertoS;
@@ -50,29 +56,33 @@ public class ClienteEnviaTCP extends Thread{
             byte[] b = new byte[8192];
             int len;
 
-            int filesize = Integer.parseInt(""+archivo.length()); // Envia archivos
-            int read = 0;
-            int totalRead = 0;
-            int remaining = filesize;
+            long filesize = Integer.parseInt(""+archivo.length()); // Envia archivos
+            long read = 0;
+            long totalRead = 0;
+            long remaining = filesize;
 
             ////////////////////
             Velocidad velocidad = new Velocidad(filesize*8);
             velocidad.iniciar();
 
-
-            while((read = bis.read(b, 0, Math.min(b.length, remaining))) > 0) {
+            while((read = bis.read(b, 0, Math.min(b.length, (int)remaining))) > 0) {
                 totalRead += read;
                 remaining -= read;
                 ///////
-                System.out.println("Tasa de transferencia: "+(velocidad.getTasaTransferencia(totalRead*8)/1000000));
-                System.out.println("Tiempo Total: "+velocidad.getTiempoTotal());
-                System.out.println("Tiempo Transcurrido: "+velocidad.getTiempoTranscurrido());
-                System.out.println("Tiempo Restante: "+velocidad.getTiempoRestante(remaining*8));
+                tasaLabel.setText(String.format("%.2f Mbps",(velocidad.getTasaTransferencia(totalRead*8)/1000000)));
+                totalLabel.setText(String.format("%.1fs",velocidad.getTiempoTotal()));
+                trasncurridoLabel.setText(String.format("%.0fs",velocidad.getTiempoTranscurrido()));
+                restanteLabel.setText(String.format("%.0fs",velocidad.getTiempoRestante(remaining*8)));
+
+//                System.out.println("Tasa de transferencia: "+(velocidad.getTasaTransferencia(totalRead*8)/1000000));
+//                System.out.println("Tiempo Total: "+velocidad.getTiempoTotal());
+//                System.out.println("Tiempo Transcurrido: "+velocidad.getTiempoTranscurrido());
+//                System.out.println("Tiempo Restante: "+velocidad.getTiempoRestante(remaining*8));
 
                 ///////
                 System.out.println("read " + totalRead + " bytes.");
                 System.out.println("remaining " + remaining + " bytes.");
-                bos.write(b, 0, read);
+                bos.write(b, 0, (int)read);
             }
 
             bos.close();
@@ -95,5 +105,12 @@ public class ClienteEnviaTCP extends Thread{
         archivo = file;
         // Declaramos un Bufer de input para los archivos.
         bis = new BufferedInputStream(new FileInputStream(archivo));
+    }
+
+    public void setLabels(JLabel tasa, JLabel total, JLabel restante, JLabel transcurrido){
+        totalLabel = total;
+        tasaLabel = tasa;
+        restanteLabel = restante;
+        trasncurridoLabel= transcurrido;
     }
 }

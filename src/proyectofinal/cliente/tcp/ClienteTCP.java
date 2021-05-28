@@ -1,5 +1,6 @@
 package proyectofinal.cliente.tcp;
 
+import javax.swing.*;
 import java.io.File;
 
 public  class ClienteTCP{
@@ -18,5 +19,9 @@ public  class ClienteTCP{
 
     public void leerArchivo(File file) throws Exception{
         clienteTCP.setFile(file);
+    }
+
+    public void setLabels(JLabel tasa, JLabel total, JLabel restante, JLabel transcurrido){
+        clienteTCP.setLabels(tasa,total,restante,transcurrido);
     }
 }

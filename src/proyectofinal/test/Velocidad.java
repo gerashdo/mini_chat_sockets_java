@@ -9,6 +9,7 @@ public class Velocidad {
 
     public Velocidad(long tamanioTotal){
         this.tamanioTotal = tamanioTotal;
+        System.out.println("Tamaño total"+tamanioTotal);
         cronometro = new StopWatch();
     }
 
@@ -26,6 +27,7 @@ public class Velocidad {
     }
 
     public double getTiempoTotal(){
+
         return tamanioTotal/tasaTransferencia;
     }
 
@@ -37,22 +39,4 @@ public class Velocidad {
         cronometro.parar();
     }
 
-//    public static void main(String[] args) throws Exception{
-//        StopWatch crono = new StopWatch();
-//        int num = 0;
-//        crono.start();
-//        System.out.println(crono.getElapsedTimeSecs());
-//        Thread.sleep(1000);
-//        System.out.println(crono.getElapsedTimeSecs());
-//        Thread.sleep(1000);
-//        System.out.println(crono.getElapsedTimeSecs());
-//        Thread.sleep(1000);
-//        System.out.println(crono.getElapsedTimeSecs());
-//        Thread.sleep(1000);
-//        System.out.println(crono.getElapsedTimeSecs());
-//
-//        crono.parar();
-//        System.out.println("Segundos "+crono.getElapsedTimeSecs());
-//        System.out.println("Milisegundos "+crono.getElapsedTime());
-//    }
 }
