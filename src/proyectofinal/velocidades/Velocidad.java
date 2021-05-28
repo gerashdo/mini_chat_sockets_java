@@ -1,6 +1,4 @@
-package proyectofinal.test;
-
-
+package proyectofinal.velocidades;
 
 public class Velocidad {
     protected long tamanioTotal;
@@ -9,7 +7,6 @@ public class Velocidad {
 
     public Velocidad(long tamanioTotal){
         this.tamanioTotal = tamanioTotal;
-        System.out.println("Tamaño total"+tamanioTotal);
         cronometro = new StopWatch();
     }
 
@@ -27,7 +24,6 @@ public class Velocidad {
     }
 
     public double getTiempoTotal(){
-
         return tamanioTotal/tasaTransferencia;
     }
 

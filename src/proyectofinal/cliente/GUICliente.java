@@ -247,7 +247,6 @@ public class GUICliente extends javax.swing.JFrame {
         fileChooser.showOpenDialog(null);
         File archivo = fileChooser.getSelectedFile();
         String nombreArchivo = archivo.getAbsolutePath();
-//        archivo = new File(nombreArchivo);
         rutaTextField.setText(nombreArchivo);
     }//GEN-LAST:event_seleccionarArchivoButtonActionPerformed
 

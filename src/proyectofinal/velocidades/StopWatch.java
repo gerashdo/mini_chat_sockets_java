@@ -1,4 +1,4 @@
-package proyectofinal.test;
+package proyectofinal.velocidades;
 
 public class StopWatch extends Thread{
 

@@ -1,11 +1,9 @@
 package proyectofinal.cliente.tcp;
-import proyectofinal.test.Velocidad;
+import proyectofinal.velocidades.Velocidad;
 
 import javax.swing.*;
 import java.net.*;
-// importar la libreria java.net
 import java.io.*;
-// importar la libreria java.io
  
 // declararamos la clase clientetcp
 public class ClienteEnviaTCP extends Thread{
@@ -45,9 +43,6 @@ public class ClienteEnviaTCP extends Thread{
     }
     
     public void run () {
-        // declaramos una variable de tipo string
-//        String mensaje="";
-
 
         // Declaramos un bloque try y catch para controlar la ejecución del subprograma
         try {
@@ -61,27 +56,17 @@ public class ClienteEnviaTCP extends Thread{
             long totalRead = 0;
             long remaining = filesize;
 
-            ////////////////////
             Velocidad velocidad = new Velocidad(filesize*8);
             velocidad.iniciar();
 
             while((read = bis.read(b, 0, Math.min(b.length, (int)remaining))) > 0) {
                 totalRead += read;
                 remaining -= read;
-                ///////
                 tasaLabel.setText(String.format("%.2f Mbps",(velocidad.getTasaTransferencia(totalRead*8)/1000000)));
                 totalLabel.setText(String.format("%.1fs",velocidad.getTiempoTotal()));
                 trasncurridoLabel.setText(String.format("%.0fs",velocidad.getTiempoTranscurrido()));
                 restanteLabel.setText(String.format("%.0fs",velocidad.getTiempoRestante(remaining*8)));
 
-//                System.out.println("Tasa de transferencia: "+(velocidad.getTasaTransferencia(totalRead*8)/1000000));
-//                System.out.println("Tiempo Total: "+velocidad.getTiempoTotal());
-//                System.out.println("Tiempo Transcurrido: "+velocidad.getTiempoTranscurrido());
-//                System.out.println("Tiempo Restante: "+velocidad.getTiempoRestante(remaining*8));
-
-                ///////
-                System.out.println("read " + totalRead + " bytes.");
-                System.out.println("remaining " + remaining + " bytes.");
                 bos.write(b, 0, (int)read);
             }
 

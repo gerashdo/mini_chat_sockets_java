@@ -1,4 +1,4 @@
-package proyectofinal.test;
+package proyectofinal.velocidades;
 
 public class PruebaVelocidad {
     public static void main(String[] args) throws Exception{

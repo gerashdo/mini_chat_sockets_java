@@ -1,9 +1,5 @@
 package proyectofinal.cliente.udp;
 
-import proyectofinal.cliente.udp.ClienteEnviaUDP;
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
@@ -24,18 +20,9 @@ public class ClienteEnviaMensajeUDP extends ClienteEnviaUDP {
     @Override
     public void run() {
 
-
         byte[] mensaje_bytes;
-        mensaje_bytes=mensaje.getBytes();
-
-        String cadenaMensaje="";
-
-        byte[] RecogerServidor_bytes;
-
         try {
             address= InetAddress.getByName(SERVER);
-
-            mensaje_bytes=new byte[mensaje.length()];
             mensaje_bytes = mensaje.getBytes();
             paquete = new DatagramPacket(mensaje_bytes,mensaje.length(),address,PUERTO_SERVER);
             socket.send(paquete);

@@ -55,21 +55,14 @@ public class AudioClienteUDP {
                 speakers.start();
 
 
-                // Configure the ip and port
 
                 InetAddress address = InetAddress.getByName(IP);
                 DatagramSocket socket = new DatagramSocket();
-                byte[] buffer = new byte[1024];
                 while(enProceso) {
                     numBytesRead = microphone.read(data, 0, CHUNK_SIZE);
-                    //  bytesRead += numBytesRead;
-                    // write the mic data to a stream for use later
                     out.write(data, 0, numBytesRead);
-                    // write mic data to stream for immediate playback
-//                    speakers.write(data, 0, numBytesRead);
                     DatagramPacket request = new DatagramPacket(data,numBytesRead, address, PUERTO);
                     socket.send(request);
-
                 }
 
             } catch (Exception e) {
