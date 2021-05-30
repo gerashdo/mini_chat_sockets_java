@@ -21,7 +21,6 @@ public class AudioServerUDP {
                 AudioFormat format = new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, 44100, 16, 2, 4, 44100, true);
                 SourceDataLine speakers;
 
-                DataLine.Info info = new DataLine.Info(TargetDataLine.class, format);
                 DataLine.Info dataLineInfo = new DataLine.Info(SourceDataLine.class, format);
                 speakers = (SourceDataLine) AudioSystem.getLine(dataLineInfo);
                 speakers.open(format);

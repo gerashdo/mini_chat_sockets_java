@@ -7,20 +7,15 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
-import java.io.ObjectInputStream;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
-import java.net.Socket;
 
 public class WebcamClientUDP {
     protected String IP;
     protected int PORT;
     protected boolean enProceso = true;
 
-    protected Socket socket;
-    protected ObjectInputStream ois;
-    protected JFrame frame;
     protected JLabel label;
     protected Webcam camara;
     protected InetAddress address;
