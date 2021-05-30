@@ -31,7 +31,7 @@ public class ClienteEnviaTCP extends Thread{
 
         // Creamos una instancia BuffererReader en la
         // que guardamos los datos introducido por el usuario
-        in = new BufferedReader(new InputStreamReader(System.in));
+        // in = new BufferedReader(new InputStreamReader(System.in));
         // Instanciamos un socket con la dirección del destino y el
         // puerto que vamos a utilizar para la comunicación
         socket = new Socket(SERVER,PUERTO_SERVER);

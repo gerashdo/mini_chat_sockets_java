@@ -28,10 +28,10 @@ public class GUICliente extends javax.swing.JFrame {
     /**
      * Creates new form Principal
      */
-    public GUICliente(ClienteUDPMensaje udpMensajes, String ip) throws Exception{
+    public GUICliente(String ip) throws Exception{
         initComponents();
         SERVER = ip;
-        clienteUDPMensajes = udpMensajes;
+        clienteUDPMensajes = new ClienteUDPMensaje(SERVER,50000);;
         //Inicializamos el socket de mensajes
         clienteUDPMensajes.inicia(mensajesTextArea);
 
