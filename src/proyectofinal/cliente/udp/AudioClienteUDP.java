@@ -2,7 +2,6 @@ package proyectofinal.cliente.udp;
 
 import javax.sound.sampled.*;
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
@@ -34,7 +33,6 @@ public class AudioClienteUDP {
         @Override
         public void run() {
             AudioFormat format = new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, 44100, 16, 2, 4, 44100, true);
-            SourceDataLine speakers;
             try {
                 microphone = AudioSystem.getTargetDataLine(format);
 
@@ -47,14 +45,6 @@ public class AudioClienteUDP {
                 int CHUNK_SIZE = 1024;
                 byte[] data = new byte[microphone.getBufferSize() / 5];
                 microphone.start();
-
-
-                DataLine.Info dataLineInfo = new DataLine.Info(SourceDataLine.class, format);
-                speakers = (SourceDataLine) AudioSystem.getLine(dataLineInfo);
-                speakers.open(format);
-                speakers.start();
-
-
 
                 InetAddress address = InetAddress.getByName(IP);
                 DatagramSocket socket = new DatagramSocket();
